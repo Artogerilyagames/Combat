@@ -16,6 +16,16 @@ public:
 	AFloater();
     UPROPERTY(VisibleAnywhere, Category= "ActorMeshComponents")
 	UStaticMeshComponent* StaticMesh;
+	// Location used by SetActorLocation() when BeginPlay() is called
+	UPROPERTY(EditInstanceOnly,BlueprintReadWrite, Category= "Floater Varialbes")
+	FVector InitialLocation;
+	// Location of the Actor when dragged in from the editor
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category="Floater Varialbes")
+	FVector PlacedLocation;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category= "Floater Varialbes")
+	bool bInitializeFloaterLocation;
+
+	
 	UPROPERTY(VisibleAnywhere, Category= "ActorMeshComponents")
 	UParticleSystemComponent* Flame;
 

@@ -12,6 +12,11 @@ AFloater::AFloater()
 	PrimaryActorTick.bCanEverTick = true;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CustomStaticMesh"));
+
+	InitialLocation = FVector(0.0f);
+	PlacedLocation = FVector(0.0f);
+	bInitializeFloaterLocation = false;
+	
 	Flame = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Flame"));
 	Flame->SetupAttachment(StaticMesh);
 
@@ -21,9 +26,14 @@ AFloater::AFloater()
 void AFloater::BeginPlay()
 {
 	Super::BeginPlay();
-	FVector InitialLocation = FVector(0.0f,0.0f ,700.f);
 
-	SetActorLocation(InitialLocation);
+	PlacedLocation = GetActorLocation();
+	if(bInitializeFloaterLocation)
+	{
+		SetActorLocation(InitialLocation);
+	}
+	
+	
 	
 }
 
