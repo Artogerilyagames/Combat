@@ -14,6 +14,8 @@ class COMBAT_API AFloater : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AFloater();
+
+
     UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category= "ActorMeshComponents")
 	UStaticMeshComponent* StaticMesh;
 	// Location used by SetActorLocation() when BeginPlay() is called
@@ -31,6 +33,12 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category=  "Floater Variables")
 	bool bInitializeFloaterLocation;
+    UPROPERTY(BlueprintReadWrite, EditInstanceOnly, Category= "Floater Variables")
+	FVector InitialForce;
+	UPROPERTY(BlueprintReadWrite, EditInstanceOnly, Category= "Floater Variables")
+	FVector InitialTorque;
+
+	
 
 	
 	UPROPERTY(VisibleAnywhere, Category= "ActorMeshComponents")
