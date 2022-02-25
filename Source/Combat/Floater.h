@@ -44,6 +44,25 @@ public:
 	UPROPERTY(VisibleAnywhere, Category= "ActorMeshComponents")
 	UParticleSystemComponent* Flame;
 
+private:
+	
+	float RunningTime;
+	float BaseZLocation;
+
+public:
+	//Amplitude - how much we oscillate up and down
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Floater Variable")
+	float A;
+	//Period is 2 * PI (absolute value of B)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Floater Variable")
+	float B;
+	//Phase Shift id (C/D)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Floater Variable")
+	float C;
+	// Vertical Shift is D
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Floater Variable")
+	float D;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

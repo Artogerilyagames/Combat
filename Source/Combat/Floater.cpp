@@ -22,6 +22,13 @@ AFloater::AFloater()
 	bShouldFloat = false;
 	InitialForce  = FVector(2000.0f, 0.0f, 0.0f);
 	InitialTorque  = FVector(2000.0f, 0.0f, 0.0f);
+
+	RunningTime = 0.f;
+
+	A = 0.f;
+	B = 0.f;
+	C = 0.f;
+	D = 0.f;
 	
 	
 	Flame = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Flame"));
@@ -42,6 +49,8 @@ void AFloater::BeginPlay()
 	InitialLocation.Y = InitialY;
 	InitialLocation.Z = InitialZ;
 
+	
+
 
 	
 
@@ -50,16 +59,15 @@ void AFloater::BeginPlay()
 	{
 		SetActorLocation(InitialLocation);
 	}
+	BaseZLocation = PlacedLocation.Z;
 	//FHitResult HitResult;
 	// ReSharper disable once CppDeclaratorNeverUsed
 
-	StaticMesh->AddForce(InitialForce);
-	StaticMesh->AddTorqueInRadians(InitialTorque);
+	//StaticMesh->AddForce(InitialForce);
+	//StaticMesh->AddTorqueInRadians(InitialTorque);
 	//FRotator Rotation = FRotator(40.0f, 30.0f, 0.0f);
 	//AddActorLocalRotation(Rotation);
 	//AddActorWorldOffset(InitialDirection, false, &HitResult);
-
-	
 	
 	
 }
@@ -71,10 +79,15 @@ void AFloater::Tick(float DeltaTime)
 
 	if(bShouldFloat)
 	{
-		FHitResult HitResult;
+		/*FHitResult HitResult;
 		AddActorLocalOffset(InitialDirection, false, &HitResult);
 		// ReSharper disable once CppDeclaratorNeverUsed
-		FVector HitLocation = HitResult.Location;
+		FVector HitLocation = HitResult.Location;*/
+        FVector NewLocation = GetActorLocation();
+		NewLocation.Z = BaseZLocation + A * FMath::Sin(B * RunningTime - C) + D; // period = 2 * PI /ABS(B)
+
+		SetActorLocation(NewLocation);
+		RunningTime += DeltaTime;
 	}
 
 	
