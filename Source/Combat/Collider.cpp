@@ -28,8 +28,6 @@ ACollider::ACollider()
 		StaticMeshComponent->SetStaticMesh(MeshComponentAsset.Object);
 		
 	}
-	
-	
 
 }
 

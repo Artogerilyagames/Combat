@@ -33,7 +33,6 @@ private:
 	class USphereComponent* SphereComponent;
 
 public:
-
 	
 	
     FORCEINLINE UStaticMeshComponent* GetMeshComponent() {return StaticMeshComponent;}
